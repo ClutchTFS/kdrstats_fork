@@ -1,0 +1,20 @@
+name: KDRStats
+version: 1.1
+main: com.quantumsrealm.KDRStats
+author: phquantum
+description: Get the PvP stats of a player (kills, deaths, k/d ratio)
+api-version: 1.14
+
+commands:
+ stats:
+  description: Reveal a players stats.
+  aliases: [kills, deaths, kdr]
+  usage: /<command> [player]
+ kdrstats:
+  description: View plugin information or reload configuration.
+  usage: /kdrstats [reload]
+  
+permissions:
+ kdrstats.reload:
+  default: op
+  description: Reload config with /kdrstats reload

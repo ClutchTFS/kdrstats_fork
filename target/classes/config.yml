@@ -1,0 +1,16 @@
+config-version: 1
+messages:
+ neverLoggedIn: '&8[&6&lKDRStats&8] &6%displayname%&7 hasn''t logged on the server before.'
+ notRecorded: '&8[&6&lKDRStats&8] &fYour stats aren''t recorded yet.'
+ usage: '&8[&6&lKDRStats&8] &fUsage: &6/stats [player]'
+ noPermission: '&8[&6&lKDRStats&8] &fYou don''t have permission for this.'
+ stats:
+  - '&8&m         &f Stats for &6%username% &8&m        &r'
+  - ''
+  - '&6 Kills     &8&m >&f %kills%'
+  - '&6 Deaths &8&m >&f %deaths%'
+  - '&6 KDR     &8&m >&f %kdr%'
+  - ''
+  - '&8&m                                            '
+ 
+players: []
