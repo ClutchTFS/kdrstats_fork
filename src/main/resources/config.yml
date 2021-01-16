@@ -13,4 +13,10 @@ messages:
   - ''
   - '&8&m                                            '
  
-players: []
+players:
+ 6f43bd53-a800-4693-9b6a-fd5d6d11ef05:
+  kills: 1
+  deaths: 0
+ 50639988-970f-4852-a0ac-14696ad7e456:
+  kills: 0
+  deaths: 1

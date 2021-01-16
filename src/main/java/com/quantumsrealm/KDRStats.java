@@ -53,9 +53,11 @@ public class KDRStats extends JavaPlugin implements Listener {
   public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     if (cmd.getName().equalsIgnoreCase("stats")) {
       Player p = (Player)sender;
+
       if (args.length == 1) {
         Player playerCheck = getPlayerExact(args[0]);
         //check to see if player is online
+
         if (playerCheck == null){
           //Playername used when displaying stats in p.sendMessage Ln71
           String offlinePlayer = getServer().getOfflinePlayer(args[0]).getName();
@@ -76,13 +78,16 @@ public class KDRStats extends JavaPlugin implements Listener {
           return true;
           //end of offline stats
         }
+
         //standard online stats code pulled right from old kdrstats plugin
         Player t = p.getServer().getPlayer(args[0]);
         String uuid = t.getUniqueId().toString();
+
         if (!getConfig().contains("players." + uuid)) {
           p.sendMessage(color(this.neverLoggedIn));
           return true;
         }
+
         int kills = getConfig().getInt("players." + uuid + ".kills");
         int deaths = getConfig().getInt("players." + uuid + ".deaths");
         float kdr = kdr(kills, deaths);
@@ -91,6 +96,8 @@ public class KDRStats extends JavaPlugin implements Listener {
           p.sendMessage(ChatColor.translateAlternateColorCodes('&', stats.replaceAll("%displayname%", t.getDisplayName()).replaceAll("%username%", t.getName()).replaceAll("%kills%", String.valueOf(kills)).replaceAll("%deaths%", String.valueOf(deaths)).replaceAll("%kdr%", String.valueOf(kdr))));
         return true;
       }
+
+
       if (args.length == 0) {
         String uuid = p.getUniqueId().toString();
         if (!getConfig().contains("players." + uuid)) {
@@ -110,8 +117,18 @@ public class KDRStats extends JavaPlugin implements Listener {
 
       }
     if (cmd.getName().equalsIgnoreCase("statstop")){
-      List<String> playerList = getConfig().getStringList("players");
-      ArrayList<String> nameList = new ArrayList<String>(playerList);
+      List<String> playerConfigList = getConfig().getStringList("players");
+//      ArrayList<String> nameList = new ArrayList<String>(playerList);
+      List<ConfigPlayer> players = new ArrayList<ConfigPlayer>(playerConfigList.size());
+
+      playerConfigList.stream().forEach(playerStr -> {
+        final ConfigPlayer player = new ConfigPlayer(playerStr);
+        List<String> playerConfigDetails = getConfig().getStringList(playerStr);
+        player.kills = Integer.valueOf(playerConfigDetails.get(0));
+        player.deaths = Integer.valueOf(playerConfigDetails.get(1));
+        players.add(player);
+      });
+
       //sender.sendMessage(color("This feature will be added in the future"));
       //return true;
     }
